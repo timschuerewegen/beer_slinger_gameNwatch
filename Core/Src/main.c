@@ -516,7 +516,11 @@ void speedUp() {
 void gameResetControls() {
 
 	if(buttons & B_POWER) {
+#ifndef VECT_TAB_SRAM
 		GW_EnterDeepSleep();
+#else
+		HAL_NVIC_SystemReset();
+#endif
 	}
 
 	if (gameState == attract) {				//Press B or A to start game in attract mode
